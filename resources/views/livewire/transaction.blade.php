@@ -92,6 +92,11 @@
                 <div class="col-12 mt-5">
                     {{ $transactions->links('pagination::bootstrap-5') }}
                 </div>
+                <div class="col-12 mt-2">
+                    <p class="small text-muted">
+                        <i>Menampilkan Data Dalam Waktu {{ $executionTime }} Detik</i>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

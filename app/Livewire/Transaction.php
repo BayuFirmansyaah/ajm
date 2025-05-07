@@ -28,16 +28,23 @@ class Transaction extends Component
 
     public function render()
     { 
+        $startTime = microtime(true);
+
         $this->search = session('search');
-        
+
         $transactions = TransactionModel::when(session('search'), function ($query) {
             $query->where('bara', 'like', '%' . session('search') . '%');
         })
         ->paginate(100) 
         ->withPath('/dashboard/transaction');
 
+        $endTime = microtime(true);
+
+        $executionTime = $endTime - $startTime;
+
         return view('livewire.transaction', [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'executionTime' => $executionTime
         ]);
     }
 
