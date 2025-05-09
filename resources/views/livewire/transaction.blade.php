@@ -35,8 +35,8 @@
                                 type="text"
                                 class="form-control"
                                 placeholder="Silahkan Masukan Kata Kunci Pencarian"
+                                wire:input="doSearch"
                                 wire:model="search"
-                                wire:change="searchChanged"
                             >
                         </div>
                         {{-- <div class="col-2">
@@ -101,21 +101,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(() => {
-                let paginations = document.querySelectorAll('.page-link');
-
-            paginations.forEach(function (pagination) {
-                let url = pagination.getAttribute('href')
-                url.replace('livewire/update?', 'dashboard/transaction?')
-
-                pagination.setAttribute('href', url)
-
-            });
-            }, 1000);
-        });
-
-    </script>    
 </div>

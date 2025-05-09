@@ -17,10 +17,10 @@ class Transaction extends Component
         $this->search = session('search', ''); 
     }
 
-    public function updatingSearch()
+    public function doSearch()
     {
-        session(['search' => $this->search]); 
-        $this->resetPage(); 
+        session()->put('search', $this->search); 
+        $this->resetPage();
     }
 
     public function render()
@@ -43,7 +43,7 @@ class Transaction extends Component
 
     public function searchChanged()
     {
-        session(['search' => $this->search]); 
+        session()->put('search', $this->search); 
         $this->resetPage(); 
     }
 }
