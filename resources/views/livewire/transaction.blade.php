@@ -30,22 +30,23 @@
             <div class="card card-body overflow-auto">
                 <div class="col-12 mb-6">
                     <div class="row mb-3">
-                        <div class="col-10">
+                        <div class="col-12">
                             <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Silahkan Masukan Kata Kunci Pencarian"
                                 wire:model="search"
+                                wire:change="searchChanged"
                             >
                         </div>
-                        <div class="col-2">
+                        {{-- <div class="col-2">
                             <button
                                 class="btn btn-primary w-100"
                                 wire:click="doSearch"
                             >
                                 Cari Data
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

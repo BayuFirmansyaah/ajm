@@ -99,7 +99,7 @@
         [
             "label" => "keluar",
             "icons" => "bx bx-left-arrow-alt",
-            "route" => null 
+            "route" => 'logout'
         ]
     ];
 

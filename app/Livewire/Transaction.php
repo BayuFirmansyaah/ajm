@@ -5,51 +5,45 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Transaction as TransactionModel;
-use Illuminate\Support\Facades\Cache;
 
 class Transaction extends Component
 {
     use WithPagination;
 
-    public $keyword = '';
-    public $search = ''; 
-    public $page = 1;
+    public $search = '';
+
+    public function mount()
+    {
+        $this->search = session('search', ''); 
+    }
 
     public function updatingSearch()
     {
-        $this->resetPage();
-    }
-
-    public function doSearch()
-    {
-        session(['search' => $this->search]);
-        $this->render();
+        session(['search' => $this->search]); 
+        $this->resetPage(); 
     }
 
     public function render()
-    { 
+    {
         $startTime = microtime(true);
 
-        $this->search = session('search');
-
-        $transactions = TransactionModel::when(session('search'), function ($query) {
-            $query->where('bara', 'like', '%' . session('search') . '%');
+        $transactions = TransactionModel::when($this->search, function ($query) {
+            $query->where('bara', 'like', '%' . $this->search . '%');
         })
-        ->paginate(100) 
+        ->paginate(100)
         ->withPath('/dashboard/transaction');
 
-        $endTime = microtime(true);
-
-        $executionTime = $endTime - $startTime;
+        $executionTime = microtime(true) - $startTime;
 
         return view('livewire.transaction', [
             'transactions' => $transactions,
-            'executionTime' => $executionTime
+            'executionTime' => $executionTime,
         ]);
     }
 
-    public function changePage($page)
+    public function searchChanged()
     {
-        $this->page = $page;
+        session(['search' => $this->search]); 
+        $this->resetPage(); 
     }
 }

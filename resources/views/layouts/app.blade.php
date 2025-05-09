@@ -109,9 +109,6 @@
 
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
-    <!-- Page JS -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-
     @if (session('success') || session('error'))
         @php
             $title = session('success') ? 'success' : 'error';
